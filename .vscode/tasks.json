@@ -1,0 +1,65 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "Build",
+        "command": "/usr/bin/g++",
+        "args": [
+          "${file}",
+          "-o",
+          "${fileDirname}/${fileBasenameNoExtension}",
+        ],
+        "presentation": {
+          "showReuseMessage": false,
+          "clear": true,
+          "reveal": "silent",
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${fileDirname}"
+        },
+      },
+      {
+        "label": "RUN",
+        "type": "process",
+        "command": "${fileDirname}/${fileBasenameNoExtension}",
+        "dependsOn": [
+          "Build"
+        ],
+        "presentation": {
+          "clear": true,
+          "showReuseMessage": false,
+          "reveal": "always",
+          "panel": "shared",
+          "focus": true,
+        },
+        "options": {
+          "cwd": "${fileDirname}"
+        },
+      },
+      {
+        "label": "RUN THE C++ FILE",
+        "type": "process",
+        "command": "rm",
+        "args": [
+          "${fileDirname}/${fileBasenameNoExtension}"
+        ],
+        "group": {
+          "kind": "build",
+        },
+        "dependsOn": [
+          "RUN"
+        ],
+        "presentation": {
+          "showReuseMessage": false,
+          "reveal": "never",
+          "panel": "new",
+          "close": true
+        },
+        "options": {
+          "cwd": "${fileDirname}"
+        },
+      }
+    ],
+  }
