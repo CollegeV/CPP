@@ -60,6 +60,7 @@
         "options": {
           "cwd": "${fileDirname}"
         },
+        "isBuildCommand": true,
       }
     ],
   }
